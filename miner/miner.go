@@ -104,6 +104,7 @@ out:
 }
 
 func (self *Miner) Start(coinbase common.Address) {
+	fmt.Println("Inside miner.go start function")
 	atomic.StoreInt32(&self.shouldStart, 1)
 	self.SetEtherbase(coinbase)
 
