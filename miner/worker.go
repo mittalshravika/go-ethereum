@@ -201,6 +201,8 @@ func (self *worker) pendingBlock() *types.Block {
 }
 
 func (self *worker) start() {
+	fmt.Println("Inside worker.go start function")
+	
 	self.mu.Lock()
 	defer self.mu.Unlock()
 
