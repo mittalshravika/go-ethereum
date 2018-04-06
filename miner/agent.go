@@ -69,6 +69,7 @@ done:
 }
 
 func (self *CpuAgent) Start() {
+	fmt.Println("Inside agent.go start function")
 	if !atomic.CompareAndSwapInt32(&self.isMining, 0, 1) {
 		return // agent already started
 	}
@@ -76,6 +77,7 @@ func (self *CpuAgent) Start() {
 }
 
 func (self *CpuAgent) update() {
+	fmt.Println("Inside agent.go update function")
 out:
 	for {
 		select {
@@ -100,6 +102,7 @@ out:
 }
 
 func (self *CpuAgent) mine(work *Work, stop <-chan struct{}) {
+	fmt.Println("Inside agent.go mine function")
 	if result, err := self.engine.Seal(self.chain, work.Block, stop); result != nil {
 		log.Info("Successfully sealed new block", "number", result.Number(), "hash", result.Hash())
 		self.returnCh <- &Result{work, result}
